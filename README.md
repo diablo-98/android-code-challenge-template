@@ -2,19 +2,19 @@
 ### About the Tasks
 The tasks in this challenge don't have very detailed instructions. We know our requirements might not be perfect.
 
-If you have a better idea (like something more efficient or creative), feel free to use it. You don't have to follow our descriptions exactly 👍
+If you have a better idea (like something more efficient or creative), feel free to use this as an opportunity to showcase it. You don't have to follow our descriptions exactly 👍
 
 ### About libraries
-To complete tasks, you'll need to use some libraries (like HTTP library), and you can choose any libraries you want.
+You are free to choose and use any libraries that you deem necessary to complete the tasks.
 
 And if you haven't used a certain library (like Jetpack Compose) or aren't very confident with it, you can:
-- Choose a different way (for example, use `databinding` instead of Jetpack Compose)
+- Choose a different way of achieving the same result (for example, use `databinding` instead of Jetpack Compose)
 - Take some time to learn it and then try it out
 
 ### Time
 We haven't set a time limit. Take as much time as you need and don't stress.
 
-But, we also don't want you to spend too much time on this. Here’s how long you might spend:
+But, we also don't want you to spend too much time on this. Here’s how long you should spend on this:
 - 2~3 hours
 
 # Tasks for the Joke App
