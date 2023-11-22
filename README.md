@@ -41,7 +41,7 @@ This app shows a joke regarding engineering.
 ---
 ### How It Should Look After You're Done
 
-![282639136-0c4da4a3-7aca-4e2e-8ef5-623701e677d2](https://github.com/WASSHAHiring/android-code-challenge-template/assets/40135056/1b622838-d2fc-4ce1-ab40-1ccda3b4bd2e){width=300}
+<img src="https://github.com/WASSHAHiring/android-code-challenge-template/assets/40135056/1b622838-d2fc-4ce1-ab40-1ccda3b4bd2e" width=300>
 
 
 ---
