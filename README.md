@@ -22,7 +22,7 @@ This app shows a joke regarding engineering.
 
 |Placeholder|Joke|
 |----|----|
-|![282440497-317714da-4083-4b05-844d-f9524052c326](https://github.com/WASSHAHiring/android-code-challenge-template/assets/40135056/df52fe31-602a-4507-8c4c-3c839569f653){width=300}|![282440504-74d57508-9923-453c-b292-84f3c7aeaa35](https://github.com/WASSHAHiring/android-code-challenge-template/assets/40135056/40dd2f20-a672-419f-8cd8-d0c32747ead0){width=300}|
+|<img src="./image_1.png" width="300">|<img src="./image_2.png" width="300">|
 
 ### Current issues
 - Currently, this app can only show one joke which is hard-coded in the app.
@@ -41,7 +41,7 @@ This app shows a joke regarding engineering.
 ---
 ### How It Should Look After You're Done
 
-<img src="https://github.com/WASSHAHiring/android-code-challenge-template/assets/40135056/1b622838-d2fc-4ce1-ab40-1ccda3b4bd2e" width=300>
+<img src="./image_3.png" width="300">
 
 
 ---
