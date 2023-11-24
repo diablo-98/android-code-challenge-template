@@ -45,6 +45,13 @@ This app shows a joke regarding engineering.
 
 
 ---
+# What We’re Looking For
+- An app that meets all of the functional requirements above.
+- Your coding style - show us how you like to write your code.
+- Architecture - how you’ve structured your code.
+- Principles - how you believe code should be written.
+- Quality - how you guarantee your code is functioning correctly.
+
 
 # How to Submit
 To submit your work:
