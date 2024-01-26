@@ -1,7 +1,7 @@
 # Android Coding Challenge for Wassha
 
 ## What We’re Looking For
-- An app that meets all of the functional [requirements]("./README.md#requirements").
+- An app that meets all of the functional [requirements]("#requirements").
 - Your coding style - show us how you like to write your code.
 - Architecture - how you’ve structured your code.
 - Principles - how you believe code should be written.
