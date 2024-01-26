@@ -7,6 +7,12 @@
 - Principles - how you believe code should be written.
 - Quality - how you guarantee your code is functioning correctly.
 
+## Time
+We haven't set a time limit. Take as much time as you need and don't stress.
+
+But, we also don't want you to spend too much time on this. Here’s how long you should spend on this:
+- 2~3 hours
+
 ## How to Submit
 To submit your work:
 - Create a new repository using this template repository. You may for it if you prefer forking.
@@ -25,12 +31,6 @@ You are free to choose and use any libraries that you deem necessary to complete
 And if you haven't used a certain library (like Jetpack Compose) or aren't very confident with it, you can:
 - Choose a different way of achieving the same result (for example, use `databinding` instead of Jetpack Compose)
 - Take some time to learn it and then try it out
-
-## Time
-We haven't set a time limit. Take as much time as you need and don't stress.
-
-But, we also don't want you to spend too much time on this. Here’s how long you should spend on this:
-- 2~3 hours
 
 ## Requirements for the Joke App
 This app shows a joke regarding engineering. Currently, this app can only show one joke which is hard-coded in the app.
