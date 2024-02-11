@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.wassha.androidcodechallenge.data.JokeRepository
 import com.wassha.androidcodechallenge.ui.theme.MyApplicationTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class JokeActivity : ComponentActivity() {
 
-    private val viewModel: JokeViewModel by viewModels { JokeViewModelFactory(JokeRepository()) }
+    private val viewModel: JokeViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

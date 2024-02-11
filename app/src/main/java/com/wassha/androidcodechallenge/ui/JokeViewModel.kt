@@ -1,11 +1,11 @@
 package com.wassha.androidcodechallenge.ui
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.wassha.androidcodechallenge.data.Joke
 import com.wassha.androidcodechallenge.data.JokeRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 data class JokeUiModel (val joke: String) {
     companion object {
@@ -15,7 +15,8 @@ data class JokeUiModel (val joke: String) {
 
 fun Joke.toUiModel() = JokeUiModel(joke = value)
 
-class JokeViewModel(
+@HiltViewModel
+class JokeViewModel @Inject constructor(
     private val repository: JokeRepository
 ): ViewModel() {
 
@@ -29,17 +30,4 @@ class JokeViewModel(
         repository.fetchJoke().let { joke.value = it.toUiModel() }
     }
 
-}
-
-class JokeViewModelFactory(
-    private val repository: JokeRepository,
-) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(JokeViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return JokeViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
 }
