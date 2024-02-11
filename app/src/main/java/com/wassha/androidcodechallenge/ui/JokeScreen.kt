@@ -10,7 +10,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,7 +20,7 @@ fun JokeScreen(
     viewModel: JokeViewModel
 ) {
 
-    val joke: JokeUiModel by viewModel.joke.observeAsState(JokeUiModel.default())
+    val joke: JokeUiModel by viewModel.joke
 
     Column(
         modifier = Modifier
