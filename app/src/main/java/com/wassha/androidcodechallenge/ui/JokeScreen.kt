@@ -14,13 +14,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun JokeScreen(
     viewModel: JokeViewModel
 ) {
 
-    val joke: JokeUiModel by viewModel.joke
+    val joke: JokeUiModel by viewModel.joke.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier

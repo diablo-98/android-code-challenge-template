@@ -1,10 +1,15 @@
 package com.wassha.androidcodechallenge.di
 
+import android.content.Context
+import androidx.room.Room.databaseBuilder
 import com.wassha.androidcodechallenge.data.JokeRepository
 import com.wassha.androidcodechallenge.data.JokeService
+import com.wassha.androidcodechallenge.db.JokeDatabase
+import com.wassha.androidcodechallenge.db.dao.JokeDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -18,7 +23,20 @@ class JokeHiltModule {
 
     @Provides
     @Singleton
-    fun getJokeRepository(jokeService: JokeService) = JokeRepository(jokeService)
+    fun getJokeRepository(jokeService: JokeService, jokeDao: JokeDao) =
+        JokeRepository(jokeService, jokeDao)
+
+    @Provides
+    @Singleton
+    fun getJokeDataBase(@ApplicationContext context: Context) = databaseBuilder(
+        context = context.applicationContext,
+        klass = JokeDatabase::class.java,
+        name = "joke_database"
+    )
+        .build()
+
+    @Provides
+    fun getJokeDao(database: JokeDatabase) = database.jokeDao()
 
     @Provides
     @Singleton

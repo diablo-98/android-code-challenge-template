@@ -1,50 +1,54 @@
 package com.wassha.androidcodechallenge.data
 
+import android.util.Log
+import com.wassha.androidcodechallenge.db.dao.JokeDao
+import com.wassha.androidcodechallenge.db.entities.JokeEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.awaitResponse
+import java.io.IOException
 
+class JokeRepository(
+    private val jokeService: JokeService,
+    private val jokeDao: JokeDao,
+) {
 
-sealed interface JokeResult {
+    val joke = jokeDao.getJoke()
 
-    data class Success(val joke: Joke): JokeResult
-    data class Failure(val errMsg: String): JokeResult
-}
-
-class JokeRepository(private val jokeService: JokeService) {
-
-    suspend fun fetchJoke(coroutineContext: CoroutineDispatcher = Dispatchers.IO): JokeResult =
+    suspend fun fetchJoke(coroutineContext: CoroutineDispatcher = Dispatchers.IO) =
         withContext(coroutineContext) {
-            val response = jokeService.getSingleProgrammingJoke().awaitResponse()
-
-            if (response.isSuccessful) {
-                val body = response.body()
-                    ?: return@withContext JokeResult.Failure("No body for successful response")
-                try {
-                    val joke = body.toJoke()
-                    JokeResult.Success(joke)
-                } catch (e: JSONException) {
-                    JokeResult.Failure("Response body JSON error: ${e.message}")
+            var success = false
+            try {
+                jokeDao.setStatus(JokeStatus.Fetching)
+                val response = jokeService.getSingleProgrammingJoke().awaitResponse()
+                if (response.isSuccessful) {
+                    response.body()?.let { body ->
+                        val joke = body.toJokeEntity()
+                        jokeDao.insert(joke)
+                        success = true
+                    }
                 }
-            } else {
-                JokeResult.Failure(
-                    "Failed response- code: ${response.code()}," +
-                            " body: ${response.errorBody()?.string()}"
-                )
+            } catch (e: IOException) {
+                Log.e(TAG, "Unable to execute API due to ${e.javaClass.name}: ${e.message}")
+            }
+
+            if (!success) {
+                jokeDao.setStatus(JokeStatus.Offline)
             }
         }
 
     @Throws(JSONException::class)
-    private fun String.toJoke(): Joke {
+    private fun String.toJokeEntity(): JokeEntity {
         val jokeString = JSONObject(this)
             .getString(JSON_KEY_JOKE)
-        return Joke(jokeString)
+        return JokeEntity(0, jokeString, JokeStatus.Online)
     }
 
     private companion object {
+        const val TAG = "JokeRepository"
         const val JSON_KEY_JOKE = "joke"
     }
 }
