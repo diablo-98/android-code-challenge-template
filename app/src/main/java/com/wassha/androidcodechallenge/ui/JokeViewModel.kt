@@ -7,10 +7,12 @@ import com.wassha.androidcodechallenge.data.JokeStatus
 import com.wassha.androidcodechallenge.db.entities.JokeEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -41,8 +43,10 @@ fun JokeEntity.toUiModel() = JokeUiModel(
 class JokeViewModel @Inject constructor(
     private val repository: JokeRepository,
 ): ViewModel() {
+
+    private val _loading = MutableStateFlow(false)
     @OptIn(FlowPreview::class)
-    val loading = repository.loading.debounce(200)
+    val loading = _loading.debounce(200)
 
     val joke = repository.joke
         .map {
@@ -52,7 +56,12 @@ class JokeViewModel @Inject constructor(
 
     fun onResume() {
         viewModelScope.launch {
-            repository.fetchJoke()
+            try {
+                _loading.update { true }
+                repository.fetchJoke()
+            } finally {
+                _loading.update { false }
+            }
         }
     }
 }
