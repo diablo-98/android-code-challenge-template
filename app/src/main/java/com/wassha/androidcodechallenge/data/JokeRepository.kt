@@ -5,6 +5,7 @@ import com.wassha.androidcodechallenge.db.dao.JokeDao
 import com.wassha.androidcodechallenge.db.entities.JokeEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import org.json.JSONException
 import org.json.JSONObject
@@ -16,7 +17,8 @@ class JokeRepository(
     private val jokeDao: JokeDao,
 ) {
 
-    val joke = jokeDao.getJoke()
+    val joke: Flow<JokeEntity?>
+        get() = jokeDao.getJoke()
 
     suspend fun fetchJoke(coroutineContext: CoroutineDispatcher = Dispatchers.IO) =
         withContext(coroutineContext) {
