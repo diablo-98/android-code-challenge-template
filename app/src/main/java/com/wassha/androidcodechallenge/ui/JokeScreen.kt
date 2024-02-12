@@ -67,7 +67,8 @@ private fun ColumnScope.JokeContent(joke: JokeUiModel) {
     ) {
         Text(
             text = "Joke",
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.primary,
         )
 
         Text(
