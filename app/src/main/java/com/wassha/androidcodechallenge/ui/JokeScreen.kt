@@ -75,25 +75,27 @@ private fun ColumnScope.JokeContent(joke: JokeUiModel) {
             style = MaterialTheme.typography.bodyLarge
         )
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(IntrinsicSize.Min),
-            horizontalArrangement = Arrangement.Center,
-        ) {
-            val (len, status) = remember(joke) {
-                joke.length to joke.status
-            }
-            if (len > 80) {
-                BoldValues("Length:", len)
+        if (joke != JokeUiModel.default()) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Min),
+                horizontalArrangement = Arrangement.Center,
+            ) {
+                val (len, status) = remember(joke) {
+                    joke.length to joke.status
+                }
+                if (len > 80) {
+                    BoldValues("Length:", len)
+                    VerticalDivider()
+                }
+
+                BoldValues(text = "Words:", value = joke.words)
+
                 VerticalDivider()
+
+                BoldValues(text = "Data source:", value = status.source, color = status.color)
             }
-
-            BoldValues(text = "Words:", value = joke.words)
-
-            VerticalDivider()
-
-            BoldValues(text = "Data source:", value = status.source, color = status.color)
         }
     }
 }

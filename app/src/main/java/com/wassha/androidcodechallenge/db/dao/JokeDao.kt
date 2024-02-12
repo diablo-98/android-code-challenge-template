@@ -18,5 +18,5 @@ interface JokeDao {
     suspend fun setStatus(status: JokeStatus)
 
     @Query("SELECT * FROM jokes LIMIT 1")
-    fun getJoke(): Flow<JokeEntity>
+    fun getJoke(): Flow<JokeEntity?>
 }

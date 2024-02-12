@@ -10,7 +10,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -49,8 +49,8 @@ class JokeViewModel @Inject constructor(
     val loading = _loading.debounce(200)
 
     val joke = repository.joke
-        .map {
-            it.toUiModel()
+        .mapNotNull {
+            it?.toUiModel()
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), JokeUiModel.default())
 
